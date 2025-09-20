@@ -49,18 +49,18 @@ Microsoft SQL Server 2025
     * tmpfs support for tempdb in Linux
 
   * HADR
-   * Fast failover for persistent AG Health
-   * Async page request dispatching
-   * Improved health diagnostics
-   * Communication control flow tuning
-   * Switching to resolving state
-   * Remove listener IP address
-   * NONE for routing
-   * AG group commit waiting tuning
-   * Contained AG support for DAG
-   * DAG sync improvements
-   * Backups on secondary replicas
-   * ZSTD Backup compression
-   * Backup to Azure immutable storage
+    * Fast failover for persistent AG Health
+    * Async page request dispatching
+    * Improved health diagnostics
+    * Communication control flow tuning
+    * Switching to resolving state
+    * Remove listener IP address
+    * NONE for routing
+    * AG group commit waiting tuning
+    * Contained AG support for DAG
+    * DAG sync improvements
+    * Backups on secondary replicas
+    * ZSTD Backup compression
+    * Backup to Azure immutable storage
 
 
