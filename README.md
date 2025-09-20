@@ -18,5 +18,35 @@ Microsoft SQL Server 2025
 - Fabric Mirroring
 - Core engine
   * Security
+     *  Security cache improvements
+     *   AEP support for encryption
+     * PBKDF password hashing
+     *   Authentication using system-assigned managed identity
+     *  Backup to URL with managed identity
+     *   Managed identity support for EKM
+     *   Managed identity for AI models
+     *   Entra logins with nonunique display names
+     *   Custom password policy on Linux
+     *   TDS 8.0/TLS 1.3 support for tools
+
   * Performance
+    * Optimized Locking
+    * Tempdb space resource governance
+    * ADR in tempdb
+    * Persisted stats for readable secondaries
+    * Change tracking cleanup
+    * Columnstore index maintenance
+    * CE feedback for expressions
+    * Optional parameter plans optimization
+    * DOP feedback on by default
+    * Optimized Halloween protection
+    * Query store for readable secondaries
+    * ABORT_QUERY_EXECUTION query hint
+    * Optimized sp_executesql
+    * Batch mode optimizations
+    * Remove In-Memory OLTP from a database
+    * tmpfs support for tempdb in Linux
+
+
+
   * HADR
