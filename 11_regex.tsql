@@ -1,0 +1,84 @@
+-- Regular Expressions in SQL Server 2025
+
+-- 0. Create db / table
+
+USE [SQL-2025]
+GO
+CREATE TABLE [dbo].[Employees](
+[EmpID] [int] IDENTITY(1,1) NOT NULL,
+[FullName] [nvarchar](100) NULL,
+[Email] [nvarchar](100) NULL,
+[Phone] [nvarchar](20) NULL,
+[Skills] [nvarchar](100) NULL,
+) 
+GO
+
+SET IDENTITY_INSERT [dbo].[Employees] ON 
+GO
+INSERT [dbo].[Employees] ([EmpID], [FullName], [Email], [Phone], [Skills]) VALUES (1, N'Admiral Great', N'admiral.Great@gmail.com', N'987654e321', N'Database Developement, Web Design')
+GO
+INSERT [dbo].[Employees] ([EmpID], [FullName], [Email], [Phone], [Skills]) VALUES (2, N'Primary Austin', N'primary_austin@yahoo.org', N'9123456789', N'Application Development, Web Development')
+GO
+INSERT [dbo].[Employees] ([EmpID], [FullName], [Email], [Phone], [Skills]) VALUES (3, N'JohnDoe', N'john.doe@.com', N'9988776655', N'Application Testing')
+GO
+INSERT [dbo].[Employees] ([EmpID], [FullName], [Email], [Phone], [Skills]) VALUES (4, N'DeepSeek', N'deepSeek@@example.com', N'8001234567', N'LLM Agent, Networking')
+GO
+INSERT [dbo].[Employees] ([EmpID], [FullName], [Email], [Phone], [Skills]) VALUES (5, N'Sarah Allison', N'sarah123@gmail.com', N'9126780', N'Database Administration')
+GO
+INSERT [dbo].[Employees] ([EmpID], [FullName], [Email], [Phone], [Skills]) VALUES (6, N'Ramsteak Juicy ', N'ramsteak1223@outlook.com', N'9123456780', N'Graphic Desigining')
+GO
+SET IDENTITY_INSERT [dbo].[Employees] OFF
+GO
+
+-- REGEXP_LIKE()
+-- checking for valid /invalid emails
+SELECT EmpID, Email,
+       CASE 
+            WHEN REGEXP_LIKE(Email, '^[A-Za-z0-9._+]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$') 
+                 THEN 'Valid Email'
+            ELSE 'Invalid Email'
+       END AS EmailStatus
+FROM Employees;
+
+
+SELECT EmpID, Phone,
+       CASE 
+            WHEN REGEXP_LIKE(Phone, '^[0-9]{10}$') 
+                 THEN 'Valid Phone Number'
+            ELSE 'Invalid Phone Number'
+       END AS PhoneStatus
+FROM Employees;
+
+-- REGEXP_REPLACE()
+--can be used for masking
+SELECT FullName,
+       Phone,
+       REGEXP_REPLACE(cast(cast(Phone as nvarchar(max)) as nvarchar(max)),cast(cast( '^\d{6}' as nvarchar(max)) as nvarchar(max)),cast(cast('XXXXXX' as nvarchar(max as nvarchar(max))))) AS MaskedPhone
+FROM Employees;
+
+
+SELECT FullName, Email,
+       REGEXP_REPLACE(cast(cast(Email as nvarchar(max)) as nvarchar(max)),cast(cast( '@.*$' as nvarchar(max)) as nvarchar(max)),cast(cast('@company.com' as nvarchar(max as nvarchar(max))))) AS NewEmail
+FROM Employees;
+
+-- REGEXP_SUBSTR()
+
+SELECT FullName,Phone,
+       REGEXP_SUBSTR(Phone, '\d{4}$') AS Last4Digits
+FROM Employees;
+
+
+SELECT FullName,
+       REGEXP_SUBSTR(FullName, '\w+',1,1) AS FirstName,
+   REGEXP_SUBSTR(FullName, '\w+',1,2) AS LastName
+FROM Employees;
+
+
+-- REGEXP_COUNT()
+
+
+SELECT FullName,Email,
+       REGEXP_COUNT(Email, '\d') AS Digits,
+   REGEXP_COUNT(REGEXP_SUBSTR(Email,'^[^@]+'), '[^A-Za-z0-9]') AS SpecialCharacters
+FROM Employees;
+
