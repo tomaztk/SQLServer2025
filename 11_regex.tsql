@@ -82,3 +82,34 @@ SELECT FullName,Email,
    REGEXP_COUNT(REGEXP_SUBSTR(Email,'^[^@]+'), '[^A-Za-z0-9]') AS SpecialCharacters
 FROM Employees;
 
+
+-- REGEXP_INSTR()
+--  determine the starting or ending position of a matching substring in a string expression 
+
+SELECT FullName, Email,
+       REGEXP_INSTR(Email, '@',1,1,0) AS [@StartPosition],
+       REGEXP_INSTR(Email, '@',1,1,1) AS [@EndPosition],
+   REGEXP_INSTR(Email, '\d',1,1,0) AS FirstIntegerOccurrence,
+       REGEXP_INSTR(Email, '\d',1,2,0) AS SecondIntegerOccurrence
+FROM Employees;
+
+
+-- REGEXP_MATCHES()
+-- takes a string expression and a regex pattern as input arguments and returns a table of substrings that matches the regex pattern
+
+SELECT E.EmpID, M.Match_Value
+FROM Employees1 E
+CROSS APPLY REGEXP_MATCHES(E.FullName, '\w+') AS M;
+
+
+-- REGEXP_SPLIT_TO_TABLE()
+--  function which return a substring from input string. 
+--  It takes a string expression and a regex pattern as input arguments, splits the input string based on the regex 
+--   pattern and returns a table with substrings. The returned tables includes two columns:
+--              value - substring split by regex
+--             ordinal - substring's position in the original strin
+
+SELECT E.EmpID, M.*
+FROM Employees AS E
+CROSS APPLY REGEX_SPLIT_TO_TABLE(Skills, '\s+') AS M;
+
