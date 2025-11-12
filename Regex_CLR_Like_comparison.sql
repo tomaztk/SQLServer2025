@@ -28,3 +28,5 @@ SELECT dbo.CLR_RegExp_like('nisse', 'm')
  
 
 
+# Add Comparison functions
+
