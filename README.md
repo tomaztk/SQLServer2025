@@ -1,6 +1,17 @@
 # SQL Server 2025
 Microsoft SQL Server 2025
 
+
+## Advent of Blog 2025
+
+This is an advent blog series on new functionalities in SQL Server 2025 as fun and educational way of christmas gifts and advent calendar :-)
+
+* Dec 01: [Microsoft SQL Server 2025 – Introduction and installation](https://tomaztsql.wordpress.com/2025/12/01/advent-of-2025-day-1-sql-server-2025-introduction-and-installation/)
+* Dec 02: [Microsoft SQL Server 2025 New T-SQL functions -  native JSON data type and some functions](https://tomaztsql.wordpress.com/2025/12/02/advent-of-2025-day-2-sql-server-2025-new-t-sql-functions-native-json-data-type-and-some-functions/)
+* Dec 03: 
+
+
+
 ## Topics
 
 - T-SQL
