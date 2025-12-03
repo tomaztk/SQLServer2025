@@ -135,6 +135,62 @@ FROM contacts;
 GO
 
 
+-- ## JSON_ARRAYAGG
+-- Constructs a JSON array from an aggregation of SQL data or columns.
+-- JSON_ARRAYAGG can also be used in a SELECT statement with GROUP BY GROUPING SETS clause.
+
+SELECT JSON_ARRAYAGG(JSON_VALUE(jdoc, '$.firstName'))
+FROM contacts;
+
+
+-- ## JSON_OBJECTAGG
+--The JSON_OBJECTAGG syntax constructs a JSON object from an aggregation of 
+--SQL data or columns. JSON_OBJECTAGG can also be used in a 
+--SELECT statement with GROUP BY GROUPING SETS clause.
+
+
+SELECT JSON_OBJECTAGG(JSON_VALUE(jdoc, '$.firstName'):JSON_VALUE(jdoc, '$.social')) 
+FROM contacts; 
+
+ 
+
+--- In addition, we can create an index:
+-- JSON INDEX
+-- JSON INDEX
+
+-- observe the execution plan
+SELECT 
+  JSON_VALUE(jdoc, '$.firstName') AS FirstName
+ ,JSON_VALUE(jdoc, '$.lastName') AS LastName
+FROM contacts
+WHERE  JSON_VALUE(jdoc, '$.firstName')  = 'Priya'
+GO
+
+-- A JSON index 'j_index_contacts' already exists on column 'jdoc' on table 'contacts', and multiple JSON 
+-- indexes per column are not allowed.
+
+DROP INDEX IF EXISTS [j_index_contacts] ON contacts;
+GO
+
+DROP INDEX IF EXISTS IX_Contact_Name ON dbo.contacts;
+GO
+
+CREATE JSON INDEX IX_Contact_Name
+ON dbo.contacts(jdoc)
+FOR ('$.firstName', '$.lastName');
+
+
+-- observe the execution plan
+SELECT 
+  JSON_VALUE(jdoc, '$.firstName') AS names
+ ,JSON_VALUE(jdoc, '$.lastName') AS names
+FROM contacts
+WHERE  JSON_VALUE(jdoc, '$.firstName')  = 'Priya'
+GO
+
+
+
+
 
 -- Show names and tags for certain tag values using a JSON index and JSON_CONTAINS
 -- Check Execution plan
@@ -174,56 +230,4 @@ SELECT JSON_VALUE(jdoc, '$.firstName') AS names
   , JSON_QUERY(jdoc, '$.social') AS socials
 FROM contacts
 WHERE JSON_CONTAINS(jdoc, 'personal', '$.tags[*]') = 1;
-GO
-
-
--- ## JSON_ARRAYAGG
--- Constructs a JSON array from an aggregation of SQL data or columns.
--- JSON_ARRAYAGG can also be used in a SELECT statement with GROUP BY GROUPING SETS clause.
-
-SELECT JSON_ARRAYAGG(JSON_VALUE(jdoc, '$.firstName'))
-FROM contacts;
-
-
--- ## JSON_OBJECTAGG
---The JSON_OBJECTAGG syntax constructs a JSON object from an aggregation of 
---SQL data or columns. JSON_OBJECTAGG can also be used in a 
---SELECT statement with GROUP BY GROUPING SETS clause.
-
-
-SELECT JSON_OBJECTAGG(JSON_VALUE(jdoc, '$.firstName'):JSON_VALUE(jdoc, '$.social')) 
-FROM contacts; 
-
- 
-
---- In addition, we can create an index:
-
--- observe the execution plan
-SELECT 
-  JSON_VALUE(jdoc, '$.firstName') AS FirstName
- ,JSON_VALUE(jdoc, '$.lastName') AS LastName
-FROM contacts
-WHERE  JSON_VALUE(jdoc, '$.firstName')  = 'Priya'
-GO
-
--- A JSON index 'j_index_contacts' already exists on column 'jdoc' on table 'contacts', and multiple JSON 
--- indexes per column are not allowed.
-
-DROP INDEX IF EXISTS [j_index_contacts] ON contacts;
-GO
-
-DROP INDEX IF EXISTS IX_Contact_Name ON dbo.contacts;
-GO
-
-CREATE JSON INDEX IX_Contact_Name
-ON dbo.contacts(jdoc)
-FOR ('$.firstName', '$.lastName');
-
-
--- observe the execution plan
-SELECT 
-  JSON_VALUE(jdoc, '$.firstName') AS names
- ,JSON_VALUE(jdoc, '$.lastName') AS names
-FROM contacts
-WHERE  JSON_VALUE(jdoc, '$.firstName')  = 'Priya'
 GO
