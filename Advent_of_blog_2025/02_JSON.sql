@@ -206,6 +206,8 @@ GO
 -- Create a JSON index
 DROP INDEX IF EXISTS [j_index_contacts] ON contacts;
 GO
+
+
 CREATE JSON INDEX [j_index_contacts] ON contacts(jdoc) FOR ('$');
 GO
 
