@@ -8,7 +8,10 @@ This is an advent blog series on new functionalities in SQL Server 2025 as fun a
 
 * Dec 01: [Microsoft SQL Server 2025 – Introduction and installation](https://tomaztsql.wordpress.com/2025/12/01/advent-of-2025-day-1-sql-server-2025-introduction-and-installation/)
 * Dec 02: [Microsoft SQL Server 2025 New T-SQL functions -  native JSON data type and some functions](https://tomaztsql.wordpress.com/2025/12/02/advent-of-2025-day-2-sql-server-2025-new-t-sql-functions-native-json-data-type-and-some-functions/)
-* Dec 03: 
+* Dec 03: [Microsoft SQL Server 2025 – New T-SQL functions – JSON Index](https://tomaztsql.wordpress.com/2025/12/03/advent-of-2025-day-3-sql-server-2025-new-t-sql-functions-json-index/)
+* Dec 04: [Microsoft SQL Server 2025 – New T-SQL functions – Product()](https://tomaztsql.wordpress.com/2025/12/04/advent-of-2025-day-3-sql-server-2025-new-t-sql-functions-product/)
+* Dec 05: [Microsoft SQL Server 2025 - New T-SQL functions - BASE64_ENCODE() and BASE64_DECODE()](https://tomaztsql.wordpress.com/2025/12/05/advent-of-2025-day-5-sql-server-2025-new-t-sql-functions-base64_encode-and-base64_decode/)
+* Dec 06: 
 
 
 
