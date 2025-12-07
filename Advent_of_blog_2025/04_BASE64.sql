@@ -10,7 +10,6 @@ SELECT CONVERT(VARCHAR(MAX) , BASE64_DECODE('aGVsbG8gd29ybGQ='))
 
  
  ---- or
-
  DECLARE 
     @plainText   nvarchar(100) = N'MyPl@inT3xt!',
     @encoded     varchar(max),
