@@ -97,3 +97,40 @@ If no matches are found, the function returns the original string.
 -- obfuscate the last four digits
 SELECT REGEXP_REPLACE(PHONE_NUMBER, '\d{4}$', '****') AS PHONE_OBFUSCATE
 FROM EMPLOYEES;
+
+
+
+/*
+
+REGEXP_INSTR()
+-- Returns the starting or ending position of the matched substring, depending on the value of the return_option argument.
+*/
+
+--  
+
+SELECT REGEXP_INSTR(EMAIL, 'tom*', 1, 1, 0) as INSTR_POS
+, EMAIL
+FROM EMPLOYEES;
+
+
+SELECT REGEXP_INSTR(EMAIL, 'tom*', 1, 2, 1) as INSTR_POS
+, EMAIL
+FROM EMPLOYEES;
+
+
+
+/*
+
+REGEXP_COUNT()
+ 
+*/
+-- count of "o" in email
+SELECT Email,
+       REGEXP_COUNT(email, 'o') AS A_COUNT
+FROM EMPLOYEES
+
+
+SELECT COUNT(*)
+FROM EMPLOYEES
+WHERE REGEXP_COUNT(Email, '[^aeiou]{3}', 1, 'i') > 0;
+
