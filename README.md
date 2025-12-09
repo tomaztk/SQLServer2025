@@ -12,8 +12,9 @@ This is an advent blog series on new functionalities in SQL Server 2025 as fun a
 * Dec 04: [Microsoft SQL Server 2025 – New T-SQL functions – Product()](https://tomaztsql.wordpress.com/2025/12/04/advent-of-2025-day-3-sql-server-2025-new-t-sql-functions-product/)
 * Dec 05: [Microsoft SQL Server 2025 - New T-SQL functions - BASE64_ENCODE() and BASE64_DECODE()](https://tomaztsql.wordpress.com/2025/12/05/advent-of-2025-day-5-sql-server-2025-new-t-sql-functions-base64_encode-and-base64_decode/)
 * Dec 06: [Micosoft SQL Server 2025 – New T-SQL functions – REGEXP_LIKE()](https://tomaztsql.wordpress.com/2025/12/06/advent-of-2025-day-5-sql-server-2025-new-t-sql-functions-regexp_like/)
-* Dec 07: 
-
+* Dec 07: [Micosoft SQL Server 2025 – New T-SQL functions – REGEXP_SUBSTR() and REGEXP_REPLACE()](https://tomaztsql.wordpress.com/2025/12/07/advent-of-2025-day-7-sql-server-2025-new-t-sql-functions-regexp_substr-and-regexp_replace/)
+* Dec 08: [Micosoft SQL Server 2025 – New T-SQL functions – REGEXP_INSTR() and REGEXP_COUNT()](https://tomaztsql.wordpress.com/2025/12/08/advent-of-2025-day-8-sql-server-2025-new-t-sql-functions-regexp_instr-and-regexp_count/)
+* Dec 09: 
 
 
 ## Topics
