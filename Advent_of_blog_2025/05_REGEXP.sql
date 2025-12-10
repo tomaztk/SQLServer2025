@@ -134,3 +134,40 @@ SELECT COUNT(*)
 FROM EMPLOYEES
 WHERE REGEXP_COUNT(Email, '[^aeiou]{3}', 1, 'i') > 0;
 
+
+
+/*
+REGEXP_MATCHES
+*/
+
+
+SELECT 
+ ID
+,Name
+,Email
+FROM [dbo].[EMPLOYEES]
+CROSS APPLY REGEXP_MATCHES(email, '^[a-zA-Z0-9. _%+-]+@[a-zA-Z0-9.]') AS RegexMatchEmail 
+
+
+-- in general searches
+SELECT *
+FROM REGEXP_MATCHES ('This is a blog post on topics of #SQLServer2025 #AzureSQL', '#([A-Za-z0-9_]+)');
+
+
+
+/*
+REGEXP_SPLIT_TO_TABLE
+*/
+
+SELECT *
+FROM REGEXP_SPLIT_TO_TABLE ('A journey of a thousand miles begins with a single step. Step step.', '\s+');
+
+
+
+SELECT 
+ Value
+,ordinal
+,email
+ 
+FROM [dbo].[EMPLOYEES] 
+cross apply REGEXP_SPLIT_TO_TABLE(Email, '[\\.,@]+') as SplitEmail
