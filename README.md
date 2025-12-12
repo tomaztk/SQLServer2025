@@ -15,6 +15,9 @@ This is an advent blog series on new functionalities in SQL Server 2025 as fun a
 * Dec 07: [Micosoft SQL Server 2025 – New T-SQL functions – REGEXP_SUBSTR() and REGEXP_REPLACE()](https://tomaztsql.wordpress.com/2025/12/07/advent-of-2025-day-7-sql-server-2025-new-t-sql-functions-regexp_substr-and-regexp_replace/)
 * Dec 08: [Micosoft SQL Server 2025 – New T-SQL functions – REGEXP_INSTR() and REGEXP_COUNT()](https://tomaztsql.wordpress.com/2025/12/08/advent-of-2025-day-8-sql-server-2025-new-t-sql-functions-regexp_instr-and-regexp_count/)
 * Dec 09: [Microsoft SQL Server 2025 – New T-SQL functions – REGEXP_MATCHES() and REGEXP_SPLIT_TO_TABLE()](https://tomaztsql.wordpress.com/2025/12/09/advent-of-2025-day-9-sql-server-2025-new-t-sql-functions-regexp_matches-and-regexp_split_to_table/)
+* Dec 10: [Microsoft SQL Server 2025 – External REST endpoint invocation](https://tomaztsql.wordpress.com/2025/12/10/advent-of-2025-day-9-sql-server-2025-external-rest-endpoint-invocation/)
+* Dec 11: [Microsoft SQL Server 2025 – External REST endpoint invocation using LLM](https://tomaztsql.wordpress.com/2025/12/11/advent-of-2025-day-11-sql-server-2025-external-rest-endpoint-invocation-using-llm/)
+* Dec 12: 
 
 
 ## Topics
