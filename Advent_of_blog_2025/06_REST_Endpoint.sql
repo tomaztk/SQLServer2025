@@ -93,13 +93,13 @@ BEGIN
           "content": [
             {
               "type": "text",
-              "text": "I am at Sinergija Conference 2025 in Belgrade in Sava Center. ' + @Prompt + '"
+              "text": "I am reading blog post on SQL Server 2025 by tomaztsql. ' + @Prompt + '"
             }
           ]
         }
       ],
       "temperature": 0.2,
-      "top_p": 0.95,
+      "top_p": 0.1,
       "max_tokens": 8000
     }'
 
@@ -130,4 +130,4 @@ END
 
 -- EXECUTE API
 
-EXEC dbo.stpExecuta_SQL_AI 'Where can I find a good restaurant?'
+EXEC dbo.stpExecuta_SQL_AI 'Where can I buy book on SQL Server 2025?'
