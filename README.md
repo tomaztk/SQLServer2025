@@ -17,7 +17,8 @@ This is an advent blog series on new functionalities in SQL Server 2025 as fun a
 * Dec 09: [Microsoft SQL Server 2025 – New T-SQL functions – REGEXP_MATCHES() and REGEXP_SPLIT_TO_TABLE()](https://tomaztsql.wordpress.com/2025/12/09/advent-of-2025-day-9-sql-server-2025-new-t-sql-functions-regexp_matches-and-regexp_split_to_table/)
 * Dec 10: [Microsoft SQL Server 2025 – External REST endpoint invocation](https://tomaztsql.wordpress.com/2025/12/10/advent-of-2025-day-9-sql-server-2025-external-rest-endpoint-invocation/)
 * Dec 11: [Microsoft SQL Server 2025 – External REST endpoint invocation using LLM](https://tomaztsql.wordpress.com/2025/12/11/advent-of-2025-day-11-sql-server-2025-external-rest-endpoint-invocation-using-llm/)
-* Dec 12: 
+* Dec 12: [Microsoft SQL Server 2025 – New vector data type and Vector functions](https://tomaztsql.wordpress.com/2025/12/12/advent-of-2025-day-12-sql-server-2025-new-vector-data-type-and-vector-functions/)
+* Dec 13: [Microsoft SQL Server 2025 – Vector functions](https://tomaztsql.wordpress.com/2025/12/13/advent-of-2025-day-13-sql-server-2025-vector-function/)
 
 
 ## Topics
