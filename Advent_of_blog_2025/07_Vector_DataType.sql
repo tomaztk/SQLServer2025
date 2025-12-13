@@ -52,6 +52,17 @@ SELECT
  ,VECTOR_NORM(@v4, 'norminf') AS norminf
 
 
+ -- VECTOR NORMALIZE
+
+DECLARE @v7 AS VECTOR(3) = '[1, 2, 3]';
+
+
+SELECT 
+       VECTOR_NORMALIZE(@v7, 'norm1') as V7_norm1
+       ,VECTOR_NORMALIZE(@v7, 'norminf') as V7_NormInf
+
+
+
  -- VECTOR_SEARCH
  USE MASTER;
  GO
@@ -68,45 +79,104 @@ ALTER DATABASE SCOPED CONFIGURATION
 SET PREVIEW_FEATURES = ON;
 GO
 
+DROP TABLE IF EXISTS dbo.Aoc_days;
+GO
 
-CREATE TABLE dbo.Articles
+CREATE TABLE dbo.Aoc_days
 (
     id INT PRIMARY KEY,
     title NVARCHAR(100),
     content NVARCHAR(MAX),
-    embedding VECTOR(5) -- faked or mocked embeddings
+    embedding VECTOR(6) -- faked or mocked embeddings
 );
 GO
 
 
-INSERT INTO Articles (id, title, content, embedding)
-VALUES (1, 'Intro to AI', 'This article introduces AI concepts.', '[0.1, 0.2, 0.3, 0.4, 0.5]'),
-       (2, 'Deep Learning', 'Deep learning is a subset of ML.', '[0.2, 0.1, 0.4, 0.3, 0.6]'),
-       (3, 'Neural Networks', 'Neural networks are powerful models.', '[0.3, 0.3, 0.2, 0.5, 0.1]'),
-       (4, 'Machine Learning Basics', 'ML basics for beginners.', '[0.4, 0.5, 0.1, 0.2, 0.3]'),
-       (5, 'Advanced AI', 'Exploring advanced AI techniques.', '[0.5, 0.4, 0.6, 0.1, 0.2]');
+
+INSERT INTO dbo.Aoc_days(id, title, content, embedding)
+VALUES
+  (1,  'Day 1: Secret Entrance',
+       'Simulate a rotating dial from a sequence of turn commands; count how often you land on zero (and, in the second part, how often you cross zero while turning).',
+       '[0.558, 0.646, 0.478, 0.173, 0.000, 0.999]'),
+
+  (2,  'Day 2: Gift Shop',
+       'Validate product IDs by detecting repeated patterns; part two broadens the repetition rule to catch more invalid IDs.',
+       '[0.464, 0.950, 0.023, 0.693, 0.844, 0.536]'),
+
+  (3,  'Day 3: Lobby',
+       'Choose digits from multiple battery banks to maximize a joltage value under ordering constraints; part two scales up the selection size and tightens constraints.',
+       '[0.072, 0.189, 0.662, 0.050, 0.243, 0.234]'),
+
+  (4,  'Day 4: Printing Department',
+       'Work on a grid of paper rolls: count which rolls are reachable under adjacency rules, then simulate a removal process to compute the total removed.',
+       '[0.439, 0.617, 0.943, 0.945, 0.409, 0.025]'),
+
+  (5,  'Day 5: Cafeteria',
+       'Compare available ingredient IDs to freshness ranges: count IDs inside ranges, then merge overlapping ranges and compute the total unique fresh IDs.',
+       '[0.318, 0.566, 0.744, 0.527, 0.210, 0.730]'),
+
+  (6,  'Day 6: Trash Compactor',
+       'Parse vertically-stacked arithmetic problems and evaluate them; part two changes how you read the columns (right-to-left / column-wise) before solving.',
+       '[0.905, 0.912, 0.508, 0.705, 0.253, 0.935]'),
+
+  (7,  'Day 7: Laboratories',
+       'Trace beam paths through splitters and obstacles; part two counts the number of resulting timelines/paths efficiently using dynamic programming.',
+       '[0.446, 0.127, 0.219, 0.736, 0.236, 0.395]'),
+
+  (8,  'Day 8: Playground',
+       'Connect floating junction boxes using the shortest total cable length (graph MST style); part two adds additional constraints requiring careful component tracking.',
+       '[0.047, 0.232, 0.145, 0.114, 0.944, 0.325]'),
+
+  (9,  'Day 9: Movie Theater',
+       'Analyze a tile grid to find maximum-area rectangles under corner/marker constraints; part two extends the geometry logic with more complex inclusion rules.',
+       '[0.059, 0.341, 0.897, 0.057, 0.815, 0.342]'),
+
+  (10, 'Day 10: Factory',
+       'Configure machines by pressing button pairs that toggle multiple indicators; find the minimum presses to reach target states, then aggregate results across many machines.',
+       '[0.327, 0.857, 0.555, 0.290, 0.000, 0.000]'),
+
+  (11, 'Day 11: Reactor',
+       'Interpret device outputs as a network; compute connectivity and path counts between key components to restore communication between the server rack and reactor.',
+       '[0.812, 0.116, 0.571, 0.115, 0.944, 0.623]'),
+
+  (12, 'Day 12: Christmas Tree Farm',
+       'Optimize a constrained arrangement/packing problem among many trees; brute force fails, so you derive a more efficient strategy to compute the final score.',
+       '[0.585, 0.940, 0.231, 0.116, 0.977, 0.322]');
 GO
 
+
 -- create a vector
-CREATE VECTOR INDEX vec_idx ON Articles(embedding)
+CREATE VECTOR INDEX vec_idx ON dbo.Aoc_days(embedding)
 WITH (METRIC = 'cosine', TYPE = 'diskann');
 GO
 
 
 -- peform erform a vector similarity search
-DECLARE @qv VECTOR(5) = '[0.3, 0.3, 0.3, 0.3, 0.3]';
+DECLARE @aoc VECTOR(6) = '[0.812, 0.235, 0.625, 0.011, 0.952, 0.043]';
 
 SELECT
-    t.id,
-    t.title,
-    t.content,
-    s.distance
+     a.id,
+    ,a.title
+    ,a.content
+    ,s.distance
 FROM
     VECTOR_SEARCH(
-        TABLE = Articles AS t,
+        TABLE = dbo.Aoc_days AS a,
         COLUMN = embedding,
-        SIMILAR_TO = @qv,
+        SIMILAR_TO = @aoc,
         METRIC = 'cosine',
         TOP_N = 4
     ) AS s
-ORDER BY s.distance, t.title;
+ORDER BY s.distance, a.title;
+
+
+/*
+VECTORPROPERTY
+
+*/
+
+
+DECLARE @v6 AS VECTOR(4) = '[1.043,2043.1234,-205.043, 0.000034234]';
+SELECT 
+   VECTORPROPERTY(@v6, 'Dimensions') AS VectorDimension
+  ,VECTORPROPERTY(@v6 ,'BaseType') AS VectorType
