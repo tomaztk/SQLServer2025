@@ -227,3 +227,54 @@ SELECT id
      ,content
      ,AI_GENERATE_EMBEDDINGS(content USE MODEL MyFoundryEmbeddingModel) AS AoC_Embeddings
 from [db_11_vector].dbo.Aoc_days;
+
+
+/*
+
+Chunks
+
+*/
+
+CREATE TABLE sample_AoC_chunks (text_id INT IDENTITY(1,1) PRIMARY KEY, text_to_chunk nvarchar(max));
+GO
+
+INSERT INTO sample_AoC_chunks (text_to_chunk)
+VALUES
+  ('Simulate a rotating dial from a sequence of turn commands; count how often you land on zero (and, in the second part, how often you cross zero while turning).'),
+  ('Validate product IDs by detecting repeated patterns; part two broadens the repetition rule to catch more invalid IDs.'),
+  ('Choose digits from multiple battery banks to maximize a joltage value under ordering constraints; part two scales up the selection size and tightens constraints.')
+ 
+
+SELECT c.*
+FROM sample_AoC_chunks as  AoC
+CROSS APPLY
+   AI_GENERATE_CHUNKS(source = text_to_chunk, chunk_type = FIXED, chunk_size = 30, enable_chunk_set_id = 1) c
+
+
+
+
+/*
+Chunks with embeddings
+*/
+
+DROP TABLE IF EXISTS dbo.AoC_embeddings;
+GO
+
+CREATE TABLE dbo.AoC_embeddings
+(
+    embeddings_id INT IDENTITY (1, 1) PRIMARY KEY,
+    chunked_text NVARCHAR (MAX),
+    vector_embeddings VECTOR(1536)
+);
+
+
+INSERT INTO AoC_embeddings (chunked_text, vector_embeddings)
+
+SELECT  c.chunk AS chunked_text
+       ,AI_GENERATE_EMBEDDINGS(c.chunk USE MODEL MyFoundryEmbeddingModel) AS vector_embeddings
+FROM sample_AoC_chunks AS t
+CROSS APPLY
+    AI_GENERATE_CHUNKS (SOURCE = t.text_to_chunk, CHUNK_TYPE = FIXED, CHUNK_SIZE = 30) AS c;
+
+
+SELECT * FROM AoC_embeddings;
