@@ -21,6 +21,7 @@ This is an advent blog series on new functionalities in SQL Server 2025 as fun a
 * Dec 13: [Microsoft SQL Server 2025 – Vector functions](https://tomaztsql.wordpress.com/2025/12/13/advent-of-2025-day-13-sql-server-2025-vector-function/)
 * Dec 14: [Microsoft SQL Server 2025 – Vector arrays or embeddings with function AI_GENERATE_EMBEDDINGS](https://tomaztsql.wordpress.com/2025/12/14/advent-of-2025-day-14-sql-server-2025-vector-arrays-or-embeddings-with-function-ai_generate_embeddings/)
 * Dec 15: [Microsoft SQL Server 2025 – T-SQL functions for AI External_Models, Chunks and Embeddings](https://tomaztsql.wordpress.com/2025/12/15/advent-of-2025-day-15-sql-server-2025-t-sql-functions-for-ai-external_models-chunks-and-embeddings/)
+* Dec 16: [Microsoft SQL Server 2025 – Optional parameter plan optimization (OPPO)](https://tomaztsql.wordpress.com/2025/12/16/advent-of-2025-day-16-sql-server-2025-optional-parameter-plan-optimization-oppo/)
 
 
 ## Topics
