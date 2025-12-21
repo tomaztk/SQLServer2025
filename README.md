@@ -23,6 +23,8 @@ This is an advent blog series on new functionalities in SQL Server 2025 as fun a
 * Dec 15: [Microsoft SQL Server 2025 – T-SQL functions for AI External_Models, Chunks and Embeddings](https://tomaztsql.wordpress.com/2025/12/15/advent-of-2025-day-15-sql-server-2025-t-sql-functions-for-ai-external_models-chunks-and-embeddings/)
 * Dec 16: [Microsoft SQL Server 2025 – Optional parameter plan optimization (OPPO)](https://tomaztsql.wordpress.com/2025/12/16/advent-of-2025-day-16-sql-server-2025-optional-parameter-plan-optimization-oppo/)
 * Dec 17: [Microsoft SQL Server 2025 – Query hint ABORT_QUERY_EXECUTION](https://tomaztsql.wordpress.com/2025/12/17/advent-of-2025-day-17-sql-server-2025-query-hint-abort_query_execution/)
+* Dec 18: [Microsoft SQL Server 2025 –  Optimized locking](https://tomaztsql.wordpress.com/2025/12/18/advent-of-2025-day-18-sql-server-2025-optimized-locking/)
+* Dec 19: [Microsoft SQL Server 2025 – New T-SQL functions – CURRENT_DATE](https://tomaztsql.wordpress.com/2025/12/19/advent-of-2025-day-19-sql-server-2025-new-t-sql-functions-current_date/)
 
 
 ## Topics
