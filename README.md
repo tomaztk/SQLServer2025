@@ -25,6 +25,8 @@ This is an advent blog series on new functionalities in SQL Server 2025 as fun a
 * Dec 17: [Microsoft SQL Server 2025 – Query hint ABORT_QUERY_EXECUTION](https://tomaztsql.wordpress.com/2025/12/17/advent-of-2025-day-17-sql-server-2025-query-hint-abort_query_execution/)
 * Dec 18: [Microsoft SQL Server 2025 –  Optimized locking](https://tomaztsql.wordpress.com/2025/12/18/advent-of-2025-day-18-sql-server-2025-optimized-locking/)
 * Dec 19: [Microsoft SQL Server 2025 – New T-SQL functions – CURRENT_DATE](https://tomaztsql.wordpress.com/2025/12/19/advent-of-2025-day-19-sql-server-2025-new-t-sql-functions-current_date/)
+* Dec 20: [Microsoft SQL Server 2025 – Change Event Streaming](https://tomaztsql.wordpress.com/2025/12/20/advent-of-2025-day-20-sql-server-2025-change-event-streaming/)
+* Dec 21: [Microsoft SQL Server 2025 – Change Event Streaming – part 2](https://tomaztsql.wordpress.com/2025/12/21/advent-of-2025-day-21-sql-server-2025-change-event-streaming-part-2/)
 
 
 ## Topics
