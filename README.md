@@ -28,6 +28,7 @@ This is an advent blog series on new functionalities in SQL Server 2025 as fun a
 * Dec 20: [Microsoft SQL Server 2025 – Change Event Streaming](https://tomaztsql.wordpress.com/2025/12/20/advent-of-2025-day-20-sql-server-2025-change-event-streaming/)
 * Dec 21: [Microsoft SQL Server 2025 – Change Event Streaming – part 2](https://tomaztsql.wordpress.com/2025/12/21/advent-of-2025-day-21-sql-server-2025-change-event-streaming-part-2/)
 * Dec 22: [Microsoft SQL Server 2025 – T-SQL Features – UNISTR()](https://tomaztsql.wordpress.com/2025/12/22/advent-of-2025-day-22-sql-server-2025-t-sql-features-unistr/)
+* Dec 23: [Microsoft SQL Server 2025 – T-SQL Features – String concatenation with || and compound assignment ||=](https://tomaztsql.wordpress.com/2025/12/23/advent-of-2025-day-23-sql-server-2025-t-sql-features-string-concatenation-with-and-compound-assignment/)
 
 
 ## Topics
