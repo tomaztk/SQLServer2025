@@ -180,30 +180,4 @@ SELECT
  GO
 
 
-
-
-
- -- another comparison
-
-DECLARE @v1 VARCHAR(MAX);  
-SET @v1 = 'This is the original.';  
-SET @v1 += ' More text.';  
-SELECT @v1;  
-
-
-DECLARE @v2 VARCHAR(MAX);  
-SET @v2 = 'This is the original.';  
-SET @v2 ||= ' More text.';  
-SELECT @v2;  
-
-
-
-declare @a varbinary(4000)
-set @a = 0x5468697320697320612074657374
-SET @a += 0x1111122
-SELECT @a as a_res
-
-declare @b varbinary(4000)
-set @b = 0x5468697320697320612074657374
-SET @b ||= 0x1111122
-SELECT @b as b_res
+--  Ansi standards
