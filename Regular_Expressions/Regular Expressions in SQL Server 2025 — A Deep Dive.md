@@ -29,4 +29,4 @@
  - Global / all matches	Find every match in a long string
 8. Real-world use cases and benckmarks guidanes
 9. Table design and indexing
-
+10. Famous death-traps with reg-ex :)
