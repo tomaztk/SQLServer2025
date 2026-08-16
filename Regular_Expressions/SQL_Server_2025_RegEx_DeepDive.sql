@@ -831,3 +831,10 @@ ALGORITHM SELECTION:
 
 -- Cleanup
 DROP TABLE IF EXISTS dbo.OptimizedEmailData;
+
+
+
+PRINT NCHAR(10) + '
+==============================
+ Edge cases & death-traps 
+============================='
