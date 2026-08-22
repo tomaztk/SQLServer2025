@@ -830,8 +830,7 @@ ALGORITHM SELECTION:
 ';
 
 -- Cleanup
-DROP TABLE IF EXISTS dbo.OptimizedEmailData;
-
+-- DROP TABLE IF EXISTS dbo.OptimizedEmailData;
 
 
 PRINT NCHAR(10) + '
