@@ -1,0 +1,16 @@
+﻿TestID;Category;Method;Pattern;MatchCount;ElapsedMs;Duration;SlowerThanFastestInCategory_x
+1;Literal;LIKE;%timeout%;16666;27;27 ms;1.00
+2;Literal;CHARINDEX;timeout;16666;62;62 ms;2.30
+3;Literal;REGEXP_LIKE;timeout;16666;326;326 ms;12.07
+4;Char Class;LIKE;%[0-9]{4}%;50001;184;184 ms;1.00
+5;Char Class;REGEXP_LIKE;\d{4};50001;333;333 ms;1.81
+6;Alternation;LIKE OR (3);cat|dog|bird;16667;84;84 ms;1.01
+7;Alternation;REGEXP_LIKE (3);cat|dog|bird;87500;350;350 ms;4.22
+8;Alternation;LIKE OR (5);5 terms;66666;83;83 ms;1.00
+9;Alternation;REGEXP_LIKE (5);5 terms;16666;354;354 ms;4.27
+10;Anchoring;LIKE unanchored;%ERROR%;33332;35;35 ms;4.38
+11;Anchoring;LIKE anchored ^;ERROR%;33332;8;8 ms;1.00
+12;Anchoring;REGEXP unanchored;ERROR;33332;333;333 ms;41.63
+13;Anchoring;REGEXP anchored ^;^ERROR;33332;319;319 ms;39.88
+14;Unicode;REGEXP VARCHAR;\w+ on VARCHAR;100000;345;345 ms;1.36
+15;Unicode;REGEXP NVARCHAR;\w+ on NVARCHAR;40000;253;253 ms;1.00
