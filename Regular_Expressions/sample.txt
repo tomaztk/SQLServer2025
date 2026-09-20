@@ -1,0 +1,20 @@
+run on: https://regex101.com/
+
+1)
+Total:  $42.50 p_lus $6 tax
+
+2)
+Total:  $42.50 p_lus $6 tax aaand $2 return
+
+3)
+The cat satcat acat dog bird and cow
+
+4)
+2026-09-19
+
+19-09-2026
+
+5)
+100px
+100
+
