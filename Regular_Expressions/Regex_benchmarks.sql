@@ -6,6 +6,7 @@
                 sys.dm_exec_query_stats for repeatable reads
    ============================================================ */
 
+--  NTK 2026  - 2026-09-21
 
 USE master;
 GO
