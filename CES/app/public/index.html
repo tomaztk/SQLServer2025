@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CES Monitor · SQL Server 2025 Change Event Streaming</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="viz-root">
+  <header class="top">
+    <div class="brand">
+      <div class="title">Change Event Streaming monitor</div>
+      <div class="subtitle" id="pipeline">SQL Server 2025 → Azure Event Hubs → this dashboard</div>
+    </div>
+    <div class="top-right">
+      <span class="badge" id="mode-badge">…</span>
+      <span class="conn" id="conn"><span class="dot"></span><span id="conn-text">Connecting</span></span>
+    </div>
+  </header>
+
+  <section class="kpis" aria-label="Key figures">
+    <div class="kpi"><div class="kpi-label">Change events received</div><div class="kpi-value" id="k-total">0</div><div class="kpi-sub" id="k-ops">INS 0 · UPD 0 · DEL 0</div></div>
+    <div class="kpi"><div class="kpi-label">Events / second</div><div class="kpi-value" id="k-rate">0</div><div class="kpi-sub">10-second average</div></div>
+    <div class="kpi"><div class="kpi-label">Transactions</div><div class="kpi-value" id="k-tx">0</div><div class="kpi-sub">distinct commit LSNs</div></div>
+    <div class="kpi"><div class="kpi-label">Commit → dashboard</div><div class="kpi-value" id="k-lat">–</div><div class="kpi-sub" id="k-lat95">p95 –</div></div>
+    <div class="kpi"><div class="kpi-label">Commit → Event Hubs</div><div class="kpi-value" id="k-pub">–</div><div class="kpi-sub" id="k-pub95">p95 –</div></div>
+    <div class="kpi"><div class="kpi-label">Duplicates / parse errors</div><div class="kpi-value" id="k-dup">0 / 0</div><div class="kpi-sub">delivery is at-least-once</div></div>
+  </section>
+
+  <main class="grid">
+    <div class="col-main">
+      <section class="card">
+        <div class="card-head">
+          <h2>Events per second by operation</h2>
+          <span class="muted small">last 5 minutes, by time received</span>
+        </div>
+        <div class="legend" id="legend"></div>
+        <div class="chart-wrap" id="chart-wrap">
+          <svg id="chart" role="img" aria-label="Events per second by operation, last five minutes"></svg>
+          <div class="tooltip" id="tooltip" hidden></div>
+        </div>
+        <details class="table-view"><summary>Table view</summary><div id="chart-table"></div></details>
+      </section>
+
+      <section class="card feed-card">
+        <div class="card-head">
+          <h2>Live change feed</h2>
+          <div class="filters">
+            <select id="f-table" aria-label="Filter by table"><option value="">All tables</option></select>
+            <select id="f-op" aria-label="Filter by operation">
+              <option value="">All operations</option><option value="INS">INS · insert</option><option value="UPD">UPD · update</option><option value="DEL">DEL · delete</option>
+            </select>
+            <button class="btn ghost" id="pause" aria-pressed="false">Pause</button>
+            <button class="btn ghost" id="clear">Clear</button>
+          </div>
+        </div>
+        <div class="feed-head">
+          <span>Received</span><span>Op</span><span>Table</span><span>Key</span><span>Change</span><span>Transaction</span><span class="num">P</span><span class="num">Latency</span>
+        </div>
+        <div class="feed" id="feed" role="list"></div>
+        <div class="empty" id="feed-empty">Waiting for change events… Start the simulator, or run <code>sql/03_generate_changes.sql</code>.</div>
+      </section>
+    </div>
+
+    <aside class="col-side">
+      <section class="card">
+        <div class="card-head"><h2>Change simulator</h2><span class="badge" id="sim-state">stopped</span></div>
+        <p class="muted small" id="sim-target">Writes real INSERT/UPDATE/DELETE transactions into SQL Server.</p>
+        <div class="row">
+          <button class="btn primary" id="sim-toggle">Start</button>
+          <label class="rate">Rate <input type="range" id="sim-rate" min="0.5" max="30" step="0.5" value="2"> <output id="sim-rate-out">2</output>/s</label>
+        </div>
+        <div class="row wrap" id="scenarios"></div>
+        <div class="row">
+          <button class="btn" id="burst">Burst ×50</button>
+          <button class="btn" id="synthetic" title="Publishes CES-shaped test events directly to Event Hubs (bypasses SQL Server)">Inject 10 synthetic</button>
+        </div>
+        <div class="sim-stats small" id="sim-stats"></div>
+        <details class="token" id="token-box" hidden>
+          <summary>Admin token</summary>
+          <input type="password" id="token" placeholder="ADMIN_TOKEN app setting" autocomplete="off">
+        </details>
+      </section>
+
+      <section class="card">
+        <div class="card-head"><h2>CES health (SQL Server)</h2><button class="btn ghost small" id="health-refresh">Refresh</button></div>
+        <div id="health" class="health small"><span class="muted">Loading…</span></div>
+      </section>
+
+      <section class="card">
+        <div class="card-head"><h2>Events by table</h2></div>
+        <table class="tbl small" id="tables"><thead><tr><th>Table</th><th class="num">INS</th><th class="num">UPD</th><th class="num">DEL</th><th class="num">Total</th></tr></thead><tbody></tbody></table>
+      </section>
+
+      <section class="card">
+        <div class="card-head"><h2>Event Hubs consumer</h2><span class="badge" id="consumer-state">…</span></div>
+        <table class="tbl small" id="partitions"><thead><tr><th>Partition</th><th class="num">Events</th><th class="num">Last seq #</th><th>Last enqueued</th></tr></thead><tbody></tbody></table>
+        <div id="consumer-errors" class="errors small"></div>
+      </section>
+    </aside>
+  </main>
+
+  <div class="drawer-backdrop" id="drawer-backdrop" hidden></div>
+  <aside class="drawer" id="drawer" aria-hidden="true" aria-labelledby="drawer-title">
+    <div class="drawer-head">
+      <h2 id="drawer-title">Change event</h2>
+      <button class="btn ghost" id="drawer-close" aria-label="Close">✕</button>
+    </div>
+    <div id="drawer-body"></div>
+  </aside>
+</div>
+<script type="module" src="app.js"></script>
+</body>
+</html>
